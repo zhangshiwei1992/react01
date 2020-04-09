@@ -16,7 +16,7 @@ class Event extends Component {
         alert('获取dom节点属性 - aid : ' + event.target.getAttribute('aid'));
     }
     changeInputName = (event) => {
-        console.log('输入值: '+event.target.value);
+        console.log('输入值: ' + event.target.value);
         this.setState({
             name: event.target.value
         });
@@ -27,11 +27,13 @@ class Event extends Component {
     render() {
         return (
             <div>
-                <button aid='自定义节点属性aid的值' onClick={this.alertFun}>事件对象测试 , 名称: {this.state.name}</button>
                 <hr />
+                <button aid='自定义节点属性aid的值' onClick={this.alertFun}>事件对象测试 , 名称: {this.state.name}</button>
+                <br /> <br />
                 姓名: <input onChange={this.changeInputName}></input>
+                <br /> <br />
                 <button onClick={this.getInputName}>获取输入框的值</button>
-                <br /> 
+                <hr />
             </div>
         )
     }

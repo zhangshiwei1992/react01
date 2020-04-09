@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/css/red.css'
 
-class Test01 extends Component {
+class ColorStyle extends Component {
 
     constructor(props) {
         super(props);
@@ -27,12 +27,12 @@ class Test01 extends Component {
                 <hr />
                 <h1 className='red'>className紅色</h1>
                 <h2>姓名: {this.state.name},年龄: {this.state.age},地址: {this.state.info.address}</h2>
-                <hr />
                 <h1 className={this.state.color}>红色 : {this.state.key} - {this.state.value}</h1>
                 <h1 style={{ 'color': 'blue' }}>蓝色 : {this.state.key} - {this.state.value}</h1>
                 <h1 style={this.state.style}>绿色并且40px : {this.state.key} - {this.state.value}</h1>
+                <hr />
             </div>
         );
     }
 }
-export default Test01;
+export default ColorStyle;

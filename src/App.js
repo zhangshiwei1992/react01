@@ -1,26 +1,28 @@
 import React from 'react';
 import './assets/css/App.css';
 import Home from './components/Home'
-import Test01 from './components/Test01'
+import ColorStyle from './components/ColorStyle'
 import List from './components/List'
 import Click from './components/Click'
 import Event from './components/Event'
+import GetInputValue from './components/GetInputValue'
+import Mvvm from './components/Mvvm'
 import FormTest from './components/FormTest'
 import TodoList from './components/TodoList'
-import FormTest02 from './components/FormTest02'
 
 function App() {
   return (
     <div className="App">
       <h1>hello world</h1>
-      <Test01 />
+      <ColorStyle />
       <Home />
       <List />
       <Click />
       <Event />
-      <FormTest />
-      <TodoList />
-      <FormTest02/>
+      <GetInputValue />
+      <Mvvm />
+      <FormTest/>
+      <TodoList/>
     </div>
   );
 }
