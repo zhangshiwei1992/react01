@@ -1,9 +1,12 @@
 import React from 'react';
 import '../assets/css/index.css';
+import storage from '../localStorge/storage';
+import Header from './Header'
 class TodoList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            name:'todoList名称',
             newTodo: '',
             todoList: [],
         };
@@ -28,7 +31,8 @@ class TodoList extends React.Component {
             });
 
             /// localStorage不能存入数组,转成json字符串再存入
-            localStorage.setItem('todoList', JSON.stringify(tempList));
+            // localStorage.setItem('todoList', JSON.stringify(tempList));
+            storage.setLocalStorage('todoList', tempList);
 
             this.setState({
                 todoList: tempList,
@@ -51,7 +55,8 @@ class TodoList extends React.Component {
                 });
 
                 /// localStorage不能存入数组,转成json字符串再存入
-                localStorage.setItem('todoList', JSON.stringify(tempList));
+                // localStorage.setItem('todoList', JSON.stringify(tempList));
+                storage.setLocalStorage('todoList', tempList);
 
                 this.setState({
                     todoList: tempList,
@@ -66,7 +71,9 @@ class TodoList extends React.Component {
         tempList.splice(index, 1);
 
         /// localStorage不能存入数组,转成json字符串再存入
-        localStorage.setItem('todoList', JSON.stringify(tempList));
+        // localStorage.setItem('todoList', JSON.stringify(tempList));
+        storage.setLocalStorage('todoList', tempList);
+
         this.setState({
             todoList: tempList
         })
@@ -77,7 +84,9 @@ class TodoList extends React.Component {
         tempList[index].status = '1';
 
         /// localStorage不能存入数组,转成json字符串再存入
-        localStorage.setItem('todoList', JSON.stringify(tempList));
+        // localStorage.setItem('todoList', JSON.stringify(tempList));
+        storage.setLocalStorage('todoList', tempList);
+
         this.setState({
             todoList: tempList
         })
@@ -88,15 +97,19 @@ class TodoList extends React.Component {
         tempList[index].status = '2';
 
         /// localStorage不能存入数组,转成json字符串再存入
-        localStorage.setItem('todoList', JSON.stringify(tempList));
+        // localStorage.setItem('todoList', JSON.stringify(tempList));
+        storage.setLocalStorage('todoList', tempList);
+
         this.setState({
             todoList: tempList
         })
     }
 
     /// react页面渲染完成会加载一次的生命周期函数
-    componentDidMount() { 
-        var localStorageList = JSON.parse(localStorage.getItem('todoList'));
+    componentDidMount() {
+        // localStorage取出的数据格式化
+        // var localStorageList = JSON.parse(localStorage.getItem('todoList'));
+        var localStorageList = storage.getLocalStorage('todoList');
         // 如果缓存list存在
         if (localStorageList) {
             this.setState({
@@ -105,10 +118,24 @@ class TodoList extends React.Component {
         }
     }
 
+    alertFunction = () => {
+        alert('这里是todoList的组件,测试方法alertFunction');
+    }
+    alertAll = () => {
+        alert('这里是todoList的组件,测试整个父组件传入的方法呢');
+    }
+    getChildData = (childData) => {
+        alert('获取子组件数据: ',childData);
+    }
+
     render() {
         return (
             <div>
                 <hr />
+                    <Header name='头部组件,传递参数 - 这里是todolist' num={123} alertFunction={this.alertFunction} todoList = {this}/>
+                    <Header alertFunction={this.alertFunction} todoList = {this}/>
+                <hr />
+
             请输入待办事项: <input onChange={this.todoInput} value={this.state.newTodo} onKeyUp={this.inputOnKeyUp}></input>
                 <button onClick={this.addData}>新增+</button>
                 <br />
