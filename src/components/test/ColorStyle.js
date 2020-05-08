@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/css/red.css'
+import '../../assets/css/red.css'
 
 class ColorStyle extends Component {
 

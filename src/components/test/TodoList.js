@@ -1,6 +1,6 @@
 import React from 'react';
-import '../assets/css/index.css';
-import storage from '../localStorge/storage';
+import '../../assets/css/index.css';
+import storage from '../../localStorge/storage';
 import Header from './Header'
 class TodoList extends React.Component {
     constructor(props) {
