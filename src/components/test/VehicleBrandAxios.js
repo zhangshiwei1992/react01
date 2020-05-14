@@ -73,44 +73,30 @@ class VehicleBrandAxios extends Component {
     render() {
         console.log('03---------render------数据渲染');
         return (
-            <div style={{ 'color': 'blue','padding':'10px' }}>
+            <div style={{ 'color': 'blue', 'padding': '10px' }}>
                 <h2>获取服务器数据</h2>
+
                 品牌首字母:<input type='text' onChange={this.initialChange} onKeyUp={this.onKeyUpFunction}></input>
+
                 <button onClick={this.findBrandList}>获取服务器品牌数据信息</button>
 
                 <h3>品牌数量:{this.state.brandList.length}</h3>
-{/* 
+
                 <ul>
                     {
                         this.state.brandList.map((value, index) => {
-                            return (<li key={index} >
-                            {value.initial} , 
-                            {value.name}
-                             <img src={value.logo} style={{ width: '100px' }} alt="" ></img>
-                            </li>);
-                        })
-                    }
-                </ul> */} 
-                <form>
-                    <tr>
-                        <td style={{ 'width': '20%' }}>品牌首字母</td>
-                        <td style={{ 'width': '20%' }}>名称</td>
-                        <td style={{ 'width': '60%' }}>logo</td>
-                    </tr>
-                    <tr>
-                    {
-                        this.state.brandList.map((value, index) => {
-                            return (  
-                                <div>
-                                    <td style={{ 'width': '20%' }}> {value.initial}</td>
-                                    <td style={{ 'width': '20%' }}>{value.name}</td>
-                                    <td style={{ 'width': '60%' }}> <img src={value.logo} style={{ width: '100px' }} alt="" ></img></td>
-                                </div>
+                            return (
+                                <li key={index}  >
+                                    <div style={{ 'border': '1px solid red','padding':'10px','margin':'10px' }}>
+                                        <p > {value.initial} , </p>
+                                        <p > {value.name} </p>
+                                        <img src={value.logo} style={{ width: '100px' }} alt="" ></img>
+                                    </div>
+                                </li>
                             );
                         })
                     }
-                    </tr>
-                </form> 
+                </ul>
                 <br /><br />
             </div>
         );

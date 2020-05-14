@@ -151,6 +151,8 @@ class TodoList extends React.Component {
                                     <button onClick={this.deleteData.bind(this, index)}>删除-</button>
                                 </li>
                             )
+                        }else{
+                            return <div></div>
                         }
                     })}
                 </ul>
@@ -167,6 +169,8 @@ class TodoList extends React.Component {
                                         <button onClick={this.deleteData.bind(this, index)}>删除-</button>
                                     </li>
                                 )
+                            }else{
+                                return <div></div>
                             }
                         })
                     }

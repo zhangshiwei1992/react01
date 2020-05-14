@@ -41,7 +41,7 @@ class ProductContent extends Component {
             <div className='pcontent'>
                 <div className='back'><Link to='/Home'>返回</Link></div>
                 <div className='p_content'>
-                    {this.state.productDetail.img_url ? <img src={`${this.state.domain}${this.state.productDetail.img_url}`} ></img> : ''}
+                    {this.state.productDetail.img_url ? <img alt='' src={`${this.state.domain}${this.state.productDetail.img_url}`} /> : ''}
                     <h2 className='title'>{this.state.productDetail.title}</h2>
                     <p className='price'>{this.state.productDetail.price} 元</p>
                     <div className='p_detail'>

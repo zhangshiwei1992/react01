@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ProductContent from './ProductContent';
-import axios from 'axios'; 
+import axios from 'axios';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             productlist: [],
-            domain:'http://a.itying.com/',
+            domain: 'http://a.itying.com/',
         };
     }
 
@@ -34,23 +33,23 @@ class Home extends Component {
     }
 
     render() {
-        return ( 
+        return (
             <div className='home'>
                 <div className='list'>
                     {
                         this.state.productlist.map((value, key) => {
                             return (
-                                <div className='item' key = {key}>
+                                <div className='item' key={key}>
                                     <h3 className='item_cate'>{value.title}</h3>
                                     <ul className='item_list'>
                                         {
-                                            value.list.map((v,k)=>{
-                                                return ( 
+                                            value.list.map((v, k) => {
+                                                return (
                                                     <li key={k}>
-                                                        <Link to= {`/ProductContent/${v._id}`}>
+                                                        <Link to={`/ProductContent/${v._id}`}>
                                                             <div className='inner'>
                                                                 {/* <img src={require('../../assets/image/5.jpg')} /> */}
-                                                                <img src={`${this.state.domain}${v.img_url}`} /> 
+                                                                <img alt='' src={`${this.state.domain}${v.img_url}`} />
                                                                 <p className='title'>{v.title}</p>
                                                                 <p className='price'>{v.price} 元</p>
                                                             </div>
@@ -59,10 +58,10 @@ class Home extends Component {
                                                 );
                                             })
                                         }
-                                    </ul> 
+                                    </ul>
                                 </div>
                             );
-                        }) 
+                        })
                     }
                 </div>
             </div>

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-class Second extends Component {
+class ShopDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
     }
     render() {
         return (
-            <div className='content'>
-
+            <div>
+                <h1>商店详情</h1>
             </div>
         );
     }
 }
 
-export default Second;
+export default ShopDetail;
