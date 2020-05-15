@@ -1,6 +1,5 @@
 import ImageImport from '../components/test/ImageImport'
-import ColorStyle from '../components/test/ColorStyle'
-import TestList from '../components/test/TestList'
+import ColorStyle from '../components/test/ColorStyle' 
 import Click from '../components/test/Click'
 import Event from '../components/test/Event'
 import GetInputValue from '../components/test/GetInputValue'
@@ -25,14 +24,11 @@ import ShopDetail from '../components/layout/shop/ShopDetail';
 import ShopConfig from '../components/layout/shop/ShopConfig';
 import AntdDesign from '../components/antd/AntDesign';
 import AntdLayout from '../components/antd/AntdLayout';
+import DictCode from '../components/antd/DictCode';
 
-let routerList = [
+let routerList = [ 
   {
     path: '/',
-    component: TestList
-  },
-  {
-    path: '/VehicleBrandAxios',
     component: VehicleBrandAxios,
     exact: true
   },
@@ -141,6 +137,10 @@ let routerList = [
   {
     path: '/AntdLayout',
     component: AntdLayout
+  },
+  {
+    path: '/DictCode',
+    component: DictCode
   },
 ];
 

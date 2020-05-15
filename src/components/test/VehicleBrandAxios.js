@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import Config from '../../config/Config';
 
 class VehicleBrandAxios extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class VehicleBrandAxios extends Component {
 
     findBrandList = () => {
         // alert('获取服务器品牌数据信息');
-        var findBrandListUrl = 'http://biz-dev.miaogoche.cn/vehicleBrand/findList';
+        var findBrandListUrl = Config.host + '/vehicleBrand/findList';
         axios.post(findBrandListUrl, {
             initial: this.state.initial,
         })
