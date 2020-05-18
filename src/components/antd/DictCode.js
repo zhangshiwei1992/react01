@@ -191,10 +191,10 @@ class DictCode extends Component {
                 onFilter: (value, record) => record.code.indexOf(value) === 0,
             },
             {
-                title: '名称',
+                title: '名称和描述合并下',
                 children: [
                     {
-                        title: 'name',
+                        title: '名称',
                         dataIndex: 'name',
                         key: 'name',
                         width: 200,
@@ -287,19 +287,19 @@ class DictCode extends Component {
         return (
             <div style={{ 'padding': '10px' }}>
                 <Row >
-                    <Col span={4}> 
+                    <Col span={6}> 
                             字典表分组代码: <Input style={{ 'width': '100px' }} placeholder={this.state.dictGroup} onChange={this.dictGroupInputChange} />
                     </Col>
 
-                    <Col span={3}>
+                    <Col span={4}>
                         <div>
                             名称: <Input style={{ 'width': '100px' }} placeholder={this.state.nameLike} onChange={this.nameInputChange} />
                         </div>
                     </Col>
 
-                    <Col span={3}>
+                    <Col span={8}>
                         <div>
-                            描述: <Input style={{ 'width': '100px' }} placeholder={this.state.descriptionLike} onChange={this.descriptionInputChange} />
+                            描述: <Input style={{ 'width': '300px' }} placeholder={this.state.descriptionLike} onChange={this.descriptionInputChange} />
                         </div>
                     </Col>
 
@@ -323,14 +323,8 @@ class DictCode extends Component {
                                 </Select>
                     </Col>
                 </Row>
-
-                <Divider orientation="right" plain  >
-                    有文字的虚线
-                </Divider>
-
-                <Button>
-                    <UploadOutlined /> Click to Upload
-                </Button>
+ 
+ 
 
                 <br />
                 <Button type="primary" onClick={this.queryPage}>查询</Button>
