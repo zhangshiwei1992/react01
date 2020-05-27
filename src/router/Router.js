@@ -22,9 +22,18 @@ import UserInfo from '../components/layout/user/UserInfo';
 import ShopList from '../components/layout/shop/ShopList';
 import ShopDetail from '../components/layout/shop/ShopDetail';
 import ShopConfig from '../components/layout/shop/ShopConfig';
-import AntdDesign from '../components/antd/AntDesign';
+import AntdButton from '../components/antd/AntdButton';
 import AntdLayout from '../components/antd/AntdLayout';
 import DictCode from '../components/antd/DictCode';
+import AntdSteps from '../components/antd/AntdSteps';
+import AntdLogin from '../components/antd/AntdLogin';
+import Register from '../components/antd/Register';
+import AntdCheckbox from '../components/antd/AntdCheckbox';
+import AntdCascader from '../components/antd/AntdCascader';
+import AntdDatePicker from '../components/antd/AntdDatePicker';
+import AntdForm from '../components/antd/AntdForm';
+import AntdTransfer from '../components/antd/AntdTransfer';
+import AntdUpload from '../components/antd/AntdUpload';
 
 let routerList = [ 
   {
@@ -45,6 +54,16 @@ let routerList = [
     component: Click
   },
   {
+    path: '/Demo',
+    component: Demo
+  },
+  {
+    path: '/DictCode',
+    component: DictCode
+  },
+
+
+  {
     path: '/Event',
     component: Event
   },
@@ -63,10 +82,6 @@ let routerList = [
   {
     path: '/TodoList',
     component: TodoList
-  },
-  {
-    path: '/Demo',
-    component: Demo
   },
   {
     path: '/News',
@@ -131,16 +146,48 @@ let routerList = [
     ]
   },
   {
-    path: '/AntdDesign',
-    component: AntdDesign
+    path: '/AntdButton',
+    component: AntdButton
   },
   {
     path: '/AntdLayout',
     component: AntdLayout
   },
   {
-    path: '/DictCode',
-    component: DictCode
+    path: '/AntdSteps',
+    component: AntdSteps
+  },
+  {
+    path: '/Register',
+    component: Register
+  },
+  {
+    path: '/AntdLogin',
+    component: AntdLogin
+  },
+  {
+    path: '/AntdCheckbox',
+    component: AntdCheckbox
+  },
+  {
+    path: '/AntdCascader',
+    component: AntdCascader
+  },
+  {
+    path: '/AntdDatePicker',
+    component: AntdDatePicker
+  },
+  {
+    path: '/AntdForm',
+    component: AntdForm
+  },
+  {
+    path: '/AntdTransfer',
+    component: AntdTransfer
+  },
+  {
+    path: '/AntdUpload',
+    component: AntdUpload
   },
 ];
 

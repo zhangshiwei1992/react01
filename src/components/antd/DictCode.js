@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import Config from '../../config/Config';
 import axios from 'axios';
-import { Table, Space, Button, Input, Divider, Select, Row, Col } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Table, Space, Button, Input, Select, Row, Col } from 'antd'; 
 const { Option } = Select;
 
 class DictCode extends Component {

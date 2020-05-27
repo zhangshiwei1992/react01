@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Config from '../../config/Config'
-import { Layout, Menu, Breadcrumb } from 'antd'; 
-  
+import { Layout, Menu } from 'antd';
+import { Link } from 'react-router-dom';
+import routerList from '../../router/Router'
+
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
- 
-class AntdLayout extends Component { 
+
+class AntdLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current:'',
+      isFold: true,
       collapsed: false,
       menuTreeInfo: [
         {
@@ -22,13 +23,157 @@ class AntdLayout extends Component {
           "ismenu": 1,
           "level": null,
           "levels": 1,
-          "name": "首页",
+          "name": "antd按钮",
           "num": 1,
           "parentId": 0,
-          "url": "/AntdDesign"
+          "url": "/AntdButton"
         },
         {
           "action": "basicConfiguration",
+          "children": [
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 21,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "代码表",
+              "num": 2,
+              "parentId": 18,
+              "url": "/DictCode"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 22,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "注册页面",
+              "num": 2,
+              "parentId": 18,
+              "url": "/Register"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 23,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "登录页面",
+              "num": 2,
+              "parentId": 18,
+              "url": "/AntdLogin"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 24,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "Steps步骤条",
+              "num": 2,
+              "parentId": 18,
+              "url": "/AntdSteps"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 25,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "AntdCheckbox多选框",
+              "num": 2,
+              "parentId": 18,
+              "url": "/AntdCheckbox"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 26,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "AntdCascader级联",
+              "num": 2,
+              "parentId": 18,
+              "url": "/AntdCascader"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 27,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "AntdDatePicker",
+              "num": 2,
+              "parentId": 18,
+              "url": "/AntdDatePicker"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 28,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "AntdForm",
+              "num": 2,
+              "parentId": 18,
+              "url": "/AntdForm"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 29,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "AntdTransfer",
+              "num": 2,
+              "parentId": 18,
+              "url": "/AntdTransfer"
+            },
+            {
+              "action": "basicConfiguration_codeChart",
+              "children": null,
+              "icon": "TransactionOutlined",
+              "id": 30,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "AntdUpload",
+              "num": 2,
+              "parentId": 18,
+              "url": "/AntdUpload"
+            },
+          ],
+          "icon": "setting", 
+          "id": 8,
+          "ismenu": 1,
+          "level": null,
+          "levels": 1,
+          "name": "antd测试",
+          "num": 4,
+          "parentId": 0,
+          "url": "/antd"
+        },
+        {
+          "action": "vehicleManage",
           "children": [
             {
               "action": "basicConfiguration_operationsCenter",
@@ -44,89 +189,10 @@ class AntdLayout extends Component {
               "url": "/"
             },
             {
-              "action": "basicConfiguration_collectPersonalConfig",
-              "children": null,
-              "icon": "TableOutlined",
-              "id": 3,
-              "ismenu": 1,
-              "level": null,
-              "levels": 2,
-              "name": "ColorStyle",
-              "num": 1,
-              "parentId": 18,
-              "url": "/ColorStyle"
-            },
-            {
-              "action": "basicConfiguration_codeChart",
-              "children": null,
-              "icon": "TransactionOutlined",
-              "id": 4,
-              "ismenu": 1,
-              "level": null,
-              "levels": 2,
-              "name": "代码表",
-              "num": 2,
-              "parentId": 18,
-              "url": "/DictCode"
-            },
-            {
-              "action": "fundManage_fundingManage",
-              "children": null,
-              "icon": "TrademarkCircleOutlined",
-              "id": 5,
-              "ismenu": 1,
-              "level": null,
-              "levels": 2,
-              "name": "ImageImport",
-              "num": 4,
-              "parentId": 18,
-              "url": "/ImageImport"
-            },
-            {
-              "action": "fundManage_accessoryConfig",
-              "children": null,
-              "icon": "TrademarkCircleOutlined",
-              "id": 6,
-              "ismenu": 1,
-              "level": null,
-              "levels": 2,
-              "name": "Click",
-              "num": 5,
-              "parentId": 18,
-              "url": "/Click"
-            },
-            {
-              "action": "fundManage_accessoryConfig",
-              "children": null,
-              "icon": "TrademarkCircleOutlined",
-              "id": 7,
-              "ismenu": 1,
-              "level": null,
-              "levels": 2,
-              "name": "Demo",
-              "num": 5,
-              "parentId": 18,
-              "url": "/Demo"
-            }
-          ],
-          "icon": "setting",
-          "id": 8,
-          "ismenu": 1,
-          "level": null,
-          "levels": 1,
-          "name": "基础管理",
-          "num": 4,
-          "parentId": 0,
-          "url": "/basicConfiguration"
-        },
-        {
-          "action": "vehicleManage",
-          "children": [
-            {
               "action": "vehicleManage_vehicleBrand",
               "children": null,
               "icon": "VideoCameraAddOutlined",
-              "id": 9,
+              "id": 3,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -139,11 +205,11 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleFirm",
               "children": null,
               "icon": "VerifiedOutlined",
-              "id": 10,
+              "id": 4,
               "ismenu": 1,
               "level": null,
               "levels": 2,
-              "name": "车厂商",
+              "name": "GetInputValue",
               "num": 2,
               "parentId": 21,
               "url": "/GetInputValue"
@@ -152,7 +218,7 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleSeries",
               "children": null,
               "icon": "WhatsAppOutlined",
-              "id": 11,
+              "id": 5,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -165,7 +231,7 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleModel",
               "children": null,
               "icon": "WifiOutlined",
-              "id": 12,
+              "id": 6,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -178,7 +244,7 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleModel",
               "children": null,
               "icon": "WifiOutlined",
-              "id": 13,
+              "id": 8,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -191,7 +257,7 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleModel",
               "children": null,
               "icon": "WifiOutlined",
-              "id": 15,
+              "id": 9,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -204,7 +270,7 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleModel",
               "children": null,
               "icon": "WifiOutlined",
-              "id": 16,
+              "id": 10,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -217,7 +283,7 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleModel",
               "children": null,
               "icon": "WifiOutlined",
-              "id": 17,
+              "id": 11,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -230,7 +296,7 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleModel",
               "children": null,
               "icon": "WifiOutlined",
-              "id": 18,
+              "id": 12,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -243,7 +309,7 @@ class AntdLayout extends Component {
               "action": "vehicleManage_vehicleModel",
               "children": null,
               "icon": "WifiOutlined",
-              "id": 19,
+              "id": 13,
               "ismenu": 1,
               "level": null,
               "levels": 2,
@@ -251,29 +317,80 @@ class AntdLayout extends Component {
               "num": 4,
               "parentId": 21,
               "url": "/Home"
-            }
+            },
+            {
+              "action": "fundManage_fundingManage",
+              "children": null,
+              "icon": "TrademarkCircleOutlined",
+              "id": 14,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "ImageImport",
+              "num": 4,
+              "parentId": 18,
+              "url": "/ImageImport"
+            },
+            {
+              "action": "fundManage_accessoryConfig",
+              "children": null,
+              "icon": "TrademarkCircleOutlined",
+              "id": 15,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "Click",
+              "num": 5,
+              "parentId": 18,
+              "url": "/Click"
+            },
+            {
+              "action": "fundManage_accessoryConfig",
+              "children": null,
+              "icon": "TrademarkCircleOutlined",
+              "id": 16,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "Demo",
+              "num": 5,
+              "parentId": 18,
+              "url": "/Demo"
+            },
+            {
+              "action": "basicConfiguration_collectPersonalConfig",
+              "children": null,
+              "icon": "TableOutlined",
+              "id": 17,
+              "ismenu": 1,
+              "level": null,
+              "levels": 2,
+              "name": "ColorStyle",
+              "num": 1,
+              "parentId": 18,
+              "url": "/ColorStyle"
+            },
           ],
           "icon": "WomanOutlined",
-          "id": 14,
+          "id": 18,
           "ismenu": 1,
           "level": null,
           "levels": 1,
-          "linkedList": [],
-          "name": "车型库",
+          "name": "react测试",
           "num": 5,
           "parentId": 0,
           "url": "/vehicleManage"
         }
       ],
-      openKeys: []
+      openKeys: [],
     };
   }
 
   componentDidMount() {
-    // this.setMenuList();
+    // this.getMenuList(); 
   }
 
-  setMenuList = () => {
+  getMenuList = () => {
     var url = Config.host + '/menu/indexMenuAndPermission';
     axios.post(url, {
       "userId": "89"
@@ -289,27 +406,31 @@ class AntdLayout extends Component {
       });
   }
 
+  // 菜单点击触发
+  menuClick = (e) => {
+    console.log('menuClick e: ', e);
+  }
+
   /**
    * 展示菜单的递归方法
    * @param {*} menuTreeInfo
    */
   showMenu(menuTreeInfo) {
     if (Array.isArray(menuTreeInfo)) {
-
       return (
         menuTreeInfo.map((record) => {
-          if (record.children) { 
+          if (record.children) {
             return <SubMenu key={record.id} title={
-              <div className="icons-list"> 
-                <span>{record.name}</span>
+              <div className="icons-list">
+                <span onClick={this.menuClick}>{record.name}</span>
               </div>
             }>
               {this.showMenu(record.children)}
             </SubMenu>;
           } else {
             return <Menu.Item key={record.id} >
-              <Link to={record.url}> 
-                <span>{record.name}</span>
+              <Link to={record.url}>
+                <span onClick={this.menuClick}>{record.name}</span>
               </Link>
             </Menu.Item>;
           }
@@ -319,10 +440,10 @@ class AntdLayout extends Component {
   }
 
   /**
-   * 点击时切换展开项 支持打开第二个一级菜单，自动关闭原来的一级菜单
-   * @param {} openKeys
+   * 点击时切换展开项 支持打开第二个一级菜单，自动关闭原来的一级菜单 
    */
   onOpenChange = (openKeys) => {
+    console.log('onOpenChange openKeys: ', openKeys);
     const latestOpenKey = openKeys.find(key =>
       this.state.openKeys.indexOf(key) === -1
     );
@@ -341,23 +462,29 @@ class AntdLayout extends Component {
   };
 
   render() {
-    console.log('this.state.openKeys: ',this.state.openKeys);
+    console.log('render this.state.openKeys: ', this.state.openKeys);
+    console.log('render this.state.childRouterListInfo: ', this.state.childRouterListInfo);
     const menuTreeRender = this.showMenu(this.state.menuTreeInfo);
+
+
+    console.log('render  this.props.children: ', this.props.children);
+    console.log('render  routerList: ', routerList);
+
 
     return (
       <div>
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-            <img src="http://img5.mtime.cn/mt/2019/01/09/171109.88229500_270X405X4.jpg" style={{ width: this.state.collapsed?'80px':'200px' }} alt="" ></img>
-
+            <img src="http://img5.mtime.cn/mt/2019/01/09/171109.88229500_270X405X4.jpg" style={{ width: this.state.collapsed ? '80px' : '200px' }} alt="" ></img>
             <Menu
               defaultSelectedKeys={['1']}
               // defaultOpenKeys={['sub1']}
               mode='inline'
               theme='dark'
-              inlineCollapsed={this.state.isFold}
+              // inlineCollapsed={this.state.isFold}
               openKeys={this.state.openKeys}
               onOpenChange={this.onOpenChange}
+              key={1}
             >
               {menuTreeRender}
             </Menu>
@@ -370,10 +497,7 @@ class AntdLayout extends Component {
 
 
             <Content style={{ padding: '0 50px' }}>
-              <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>Index</Breadcrumb.Item>
-                <Breadcrumb.Item>{this.state.current}</Breadcrumb.Item>
-              </Breadcrumb>
+              <h1>右侧内容</h1> 
             </Content>
 
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2020 Created by Ant UED</Footer>

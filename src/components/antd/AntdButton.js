@@ -14,7 +14,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { PoweroffOutlined } from '@ant-design/icons';
 
 
-class AntdDesign extends Component {
+class AntdButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -221,4 +221,4 @@ class AntdDesign extends Component {
     }
 }
 
-export default AntdDesign;
+export default AntdButton;
