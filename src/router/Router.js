@@ -34,6 +34,11 @@ import AntdDatePicker from '../components/antd/AntdDatePicker';
 import AntdForm from '../components/antd/AntdForm';
 import AntdTransfer from '../components/antd/AntdTransfer';
 import AntdUpload from '../components/antd/AntdUpload';
+import AntdTabs from '../components/antd/AntdTabs';
+import AntdTabsTwo from '../components/antd/AntdTabsTwo';
+import AntdAlert from '../components/antd/AntdAlert';
+import AntdDrawer from '../components/antd/AntdDrawer';
+import AntdModel from '../components/antd/AntdModel';
 
 let routerList = [ 
   {
@@ -188,6 +193,26 @@ let routerList = [
   {
     path: '/AntdUpload',
     component: AntdUpload
+  },
+  {
+    path: '/AntdTabs',
+    component: AntdTabs
+  },
+  {
+    path: '/AntdTabsTwo',
+    component: AntdTabsTwo
+  },
+  {
+    path: '/AntdAlert',
+    component: AntdAlert
+  },
+  {
+    path: '/AntdDrawer',
+    component: AntdDrawer
+  },
+  {
+    path: '/AntdModel',
+    component: AntdModel
   },
 ];
 
