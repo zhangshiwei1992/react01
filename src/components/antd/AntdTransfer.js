@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Transfer, Switch } from 'antd';
+import React, {Component} from 'react';
+import {Switch, Transfer} from 'antd';
 
 
 const mockData = [];
@@ -22,15 +22,14 @@ class AntdTransfer extends Component {
             targetKeys: oriTargetKeys,
             selectedKeys: [],
             disabled: false,
-
             mockData: [],
-            targetKeys: [],
         }
     }
 
     componentDidMount() {
         this.getMock();
     }
+
     getMock = () => {
         const targetKeys = [];
         const mockData = [];
@@ -46,13 +45,13 @@ class AntdTransfer extends Component {
             }
             mockData.push(data);
         }
-        this.setState({ mockData, targetKeys });
+        this.setState({mockData, targetKeys});
     };
 
     filterOption = (inputValue, option) => option.description.indexOf(inputValue) > -1;
 
     handleChange = targetKeys => {
-        this.setState({ targetKeys });
+        this.setState({targetKeys});
     };
 
     handleSearch = (dir, value) => {
@@ -85,13 +84,13 @@ class AntdTransfer extends Component {
     };
 
     handleDisable = disabled => {
-        this.setState({ disabled });
+        this.setState({disabled});
     };
 
     render() {
-        const { targetKeys, selectedKeys, disabled } = this.state;
+        const {targetKeys, selectedKeys, disabled} = this.state;
         return (
-            <div style={{ 'padding': "1px 1px 1px 100px" }}>
+            <div style={{'padding': "1px 1px 1px 100px"}}>
                 <Transfer
                     dataSource={mockData}
                     titles={['Source', 'Target']}
@@ -108,10 +107,10 @@ class AntdTransfer extends Component {
                     checkedChildren="disabled"
                     checked={disabled}
                     onChange={this.handleDisable}
-                    style={{ marginTop: 16 }}
+                    style={{marginTop: 16}}
                 />
-                <br />
-                <br />
+                <br/>
+                <br/>
                 <Transfer
                     dataSource={this.state.mockData}
                     showSearch

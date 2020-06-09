@@ -1,5 +1,5 @@
 import ImageImport from '../components/test/ImageImport'
-import ColorStyle from '../components/test/ColorStyle' 
+import ColorStyle from '../components/test/ColorStyle'
 import Click from '../components/test/Click'
 import Event from '../components/test/Event'
 import GetInputValue from '../components/test/GetInputValue'
@@ -49,216 +49,221 @@ import AntdSkeleton from '../components/antd/AntdSkeleton';
 import AntdBackTop from '../components/antd/AntdBackTop';
 import AntdConfigProvider from '../components/antd/AntdConfigProvider';
 
-let routerList = [ 
-  {
-    path: '/',
-    component: VehicleBrandAxios,
-    exact: true
-  },
-  {
-    path: '/ColorStyle',
-    component: ColorStyle
-  },
-  {
-    path: '/ImageImport',
-    component: ImageImport
-  },
-  {
-    path: '/Click',
-    component: Click
-  },
-  {
-    path: '/Demo',
-    component: Demo
-  },
-  {
-    path: '/DictCode',
-    component: DictCode
-  },
+let routerList = [
+    {
+        path: '/',
+        component: VehicleBrandAxios,
+        exact: true
+    },
+    {
+        path: '/VehicleBrandAxios',
+        component: VehicleBrandAxios,
+        exact: true
+    },
+    {
+        path: '/ColorStyle',
+        component: ColorStyle
+    },
+    {
+        path: '/ImageImport',
+        component: ImageImport
+    },
+    {
+        path: '/Click',
+        component: Click
+    },
+    {
+        path: '/Demo',
+        component: Demo
+    },
+    {
+        path: '/DictCode',
+        component: DictCode
+    },
 
 
-  {
-    path: '/Event',
-    component: Event
-  },
-  {
-    path: '/GetInputValue',
-    component: GetInputValue
-  },
-  {
-    path: '/Mvvm',
-    component: Mvvm
-  },
-  {
-    path: '/FormTest',
-    component: FormTest
-  },
-  {
-    path: '/TodoList',
-    component: TodoList
-  },
-  {
-    path: '/News',
-    component: News
-  },
-  {
-    path: '/NewsDetail/:aid',
-    component: NewsDetail
-  },
-  {
-    path: '/Book',
-    component: Book
-  },
-  {
-    path: '/BookDetail',
-    component: BookDetail
-  },
-  {
-    path: '/Home',
-    component: Home
-  },
-  {
-    path: '/Login',
-    component: Login
-  },
-  {
-    path: '/ProductContent/:id',
-    component: ProductContent
-  },
-  {
-    path: '/User',
-    component: User,
-    childRouterList: [
-      {
-        path: '/User/',
-        component: MainInfo,
-        exact: true
-      },
-      {
-        path: '/User/UserInfo',
-        component: UserInfo
-      },
-    ]
-  },
-  {
-    path: '/Shop',
-    component: Shop,
-    childRouterList: [
-      {
-        path: '/Shop/',
-        component: ShopList,
-        exact: true
-      },
-      {
-        path: '/Shop/ShopDetail',
-        component: ShopDetail
-      },
-      {
-        path: '/Shop/ShopConfig',
-        component: ShopConfig
-      },
-    ]
-  },
-  {
-    path: '/AntdButton',
-    component: AntdButton
-  },
-  {
-    path: '/AntdLayout',
-    component: AntdLayout
-  },
-  {
-    path: '/AntdSteps',
-    component: AntdSteps
-  },
-  {
-    path: '/Register',
-    component: Register
-  },
-  {
-    path: '/AntdLogin',
-    component: AntdLogin
-  },
-  {
-    path: '/AntdCheckbox',
-    component: AntdCheckbox
-  },
-  {
-    path: '/AntdCascader',
-    component: AntdCascader
-  },
-  {
-    path: '/AntdDatePicker',
-    component: AntdDatePicker
-  },
-  {
-    path: '/AntdForm',
-    component: AntdForm
-  },
-  {
-    path: '/AntdTransfer',
-    component: AntdTransfer
-  },
-  {
-    path: '/AntdUpload',
-    component: AntdUpload
-  },
-  {
-    path: '/AntdTabs',
-    component: AntdTabs
-  },
-  {
-    path: '/AntdTabsTwo',
-    component: AntdTabsTwo
-  },
-  {
-    path: '/AntdAlert',
-    component: AntdAlert
-  },
-  {
-    path: '/AntdDrawer',
-    component: AntdDrawer
-  },
-  {
-    path: '/AntdModel',
-    component: AntdModel
-  },
-  {
-    path: '/AntdMessage',
-    component: AntdMessage
-  },
-  {
-    path: '/AntdOpenNotification',
-    component: AntdOpenNotification
-  },
-  {
-    path: '/AntdProgress',
-    component: AntdProgress
-  },
-  {
-    path: '/AntdPopconfirm',
-    component: AntdPopconfirm
-  },
-  {
-    path: '/AntdResult',
-    component: AntdResult
-  },
-  {
-    path: '/AntdApin',
-    component: AntdApin
-  },
-  {
-    path: '/AntdSkeleton',
-    component: AntdSkeleton
-  },
-  {
-    path: '/AntdBackTop',
-    component: AntdBackTop
-  },
-  {
-    path: '/AntdConfigProvider',
-    component: AntdConfigProvider
-  },
+    {
+        path: '/Event',
+        component: Event
+    },
+    {
+        path: '/GetInputValue',
+        component: GetInputValue
+    },
+    {
+        path: '/Mvvm',
+        component: Mvvm
+    },
+    {
+        path: '/FormTest',
+        component: FormTest
+    },
+    {
+        path: '/TodoList',
+        component: TodoList
+    },
+    {
+        path: '/News',
+        component: News
+    },
+    {
+        path: '/NewsDetail/:aid',
+        component: NewsDetail
+    },
+    {
+        path: '/Book',
+        component: Book
+    },
+    {
+        path: '/BookDetail',
+        component: BookDetail
+    },
+    {
+        path: '/Home',
+        component: Home
+    },
+    {
+        path: '/Login',
+        component: Login
+    },
+    {
+        path: '/ProductContent/:id',
+        component: ProductContent
+    },
+    {
+        path: '/User',
+        component: User,
+        childRouterList: [
+            {
+                path: '/User/',
+                component: MainInfo,
+                exact: true
+            },
+            {
+                path: '/User/UserInfo',
+                component: UserInfo
+            },
+        ]
+    },
+    {
+        path: '/Shop',
+        component: Shop,
+        childRouterList: [
+            {
+                path: '/Shop/',
+                component: ShopList,
+                exact: true
+            },
+            {
+                path: '/Shop/ShopDetail',
+                component: ShopDetail
+            },
+            {
+                path: '/Shop/ShopConfig',
+                component: ShopConfig
+            },
+        ]
+    },
+    {
+        path: '/AntdButton',
+        component: AntdButton
+    },
+    {
+        path: '/AntdLayout',
+        component: AntdLayout
+    },
+    {
+        path: '/AntdSteps',
+        component: AntdSteps
+    },
+    {
+        path: '/Register',
+        component: Register
+    },
+    {
+        path: '/AntdLogin',
+        component: AntdLogin
+    },
+    {
+        path: '/AntdCheckbox',
+        component: AntdCheckbox
+    },
+    {
+        path: '/AntdCascader',
+        component: AntdCascader
+    },
+    {
+        path: '/AntdDatePicker',
+        component: AntdDatePicker
+    },
+    {
+        path: '/AntdForm',
+        component: AntdForm
+    },
+    {
+        path: '/AntdTransfer',
+        component: AntdTransfer
+    },
+    {
+        path: '/AntdUpload',
+        component: AntdUpload
+    },
+    {
+        path: '/AntdTabs',
+        component: AntdTabs
+    },
+    {
+        path: '/AntdTabsTwo',
+        component: AntdTabsTwo
+    },
+    {
+        path: '/AntdAlert',
+        component: AntdAlert
+    },
+    {
+        path: '/AntdDrawer',
+        component: AntdDrawer
+    },
+    {
+        path: '/AntdModel',
+        component: AntdModel
+    },
+    {
+        path: '/AntdMessage',
+        component: AntdMessage
+    },
+    {
+        path: '/AntdOpenNotification',
+        component: AntdOpenNotification
+    },
+    {
+        path: '/AntdProgress',
+        component: AntdProgress
+    },
+    {
+        path: '/AntdPopconfirm',
+        component: AntdPopconfirm
+    },
+    {
+        path: '/AntdResult',
+        component: AntdResult
+    },
+    {
+        path: '/AntdApin',
+        component: AntdApin
+    },
+    {
+        path: '/AntdSkeleton',
+        component: AntdSkeleton
+    },
+    {
+        path: '/AntdBackTop',
+        component: AntdBackTop
+    },
+    {
+        path: '/AntdConfigProvider',
+        component: AntdConfigProvider
+    },
 ];
 
 export default routerList;

@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import {
-    Form, Select, InputNumber, Switch, Radio, Slider, Button, Upload, Rate, Checkbox, Row, Col,
-} from 'antd';
+import React, {Component} from 'react';
+import {Button, Checkbox, Col, Form, InputNumber, Radio, Rate, Row, Select, Slider, Switch, Upload,} from 'antd';
 
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+import {InboxOutlined, UploadOutlined} from '@ant-design/icons';
 
-const { Option } = Select;
+const {Option} = Select;
 
 const formItemLayout = {
-    labelCol: { span: 6 },
-    wrapperCol: { span: 14 },
+    labelCol: {span: 6},
+    wrapperCol: {span: 14},
 };
 
 const normFile = e => {
@@ -25,7 +23,7 @@ class AntdForm extends Component {
         super(props);
         this.state = {};
     }
- 
+
     render() {
         const onFinish = values => {
             console.log('Received values of form: ', values);
@@ -39,8 +37,8 @@ class AntdForm extends Component {
                     {...formItemLayout}
                     onFinish={onFinish}
                     initialValues={{
-                        ['input-number']: 3,
-                        ['checkbox-group']: ['A', 'B'],
+                        'input-number': 3,
+                        'checkbox-group': ['A', 'B'],
                         rate: 3.5,
                     }}
                 >
@@ -51,7 +49,7 @@ class AntdForm extends Component {
                         name="select"
                         label="Select"
                         hasFeedback
-                        rules={[{ required: true, message: 'Please select your country!' }]}
+                        rules={[{required: true, message: 'Please select your country!'}]}
                     >
                         <Select placeholder="Please select a country">
                             <Option value="china">China</Option>
@@ -62,7 +60,7 @@ class AntdForm extends Component {
                     <Form.Item
                         name="select-multiple"
                         label="Select[multiple]"
-                        rules={[{ required: true, message: 'Please select your favourite colors!', type: 'array' }]}
+                        rules={[{required: true, message: 'Please select your favourite colors!', type: 'array'}]}
                     >
                         <Select mode="multiple" placeholder="Please select favourite colors">
                             <Option value="red">Red</Option>
@@ -73,13 +71,13 @@ class AntdForm extends Component {
 
                     <Form.Item label="InputNumber">
                         <Form.Item name="input-number" noStyle>
-                            <InputNumber min={1} max={10} />
+                            <InputNumber min={1} max={10}/>
                         </Form.Item>
                         <span className="ant-form-text"> machines</span>
                     </Form.Item>
 
                     <Form.Item name="switch" label="Switch" valuePropName="checked">
-                        <Switch />
+                        <Switch/>
                     </Form.Item>
 
                     <Form.Item name="slider" label="Slider">
@@ -112,44 +110,44 @@ class AntdForm extends Component {
                     </Form.Item>
 
                     <Form.Item name="checkbox-group" label="Checkbox.Group">
-                            <Checkbox.Group>
+                        <Checkbox.Group>
                             <Row>
                                 <Col span={8}>
-                                    <Checkbox value="A" style={{ lineHeight: '32px' }}>
+                                    <Checkbox value="A" style={{lineHeight: '32px'}}>
                                         A
-                            </Checkbox>
+                                    </Checkbox>
                                 </Col>
                                 <Col span={8}>
-                                    <Checkbox value="B" style={{ lineHeight: '32px' }} disabled>
+                                    <Checkbox value="B" style={{lineHeight: '32px'}} disabled>
                                         B
-                            </Checkbox>
+                                    </Checkbox>
                                 </Col>
                                 <Col span={8}>
-                                    <Checkbox value="C" style={{ lineHeight: '32px' }}>
+                                    <Checkbox value="C" style={{lineHeight: '32px'}}>
                                         C
-                            </Checkbox>
+                                    </Checkbox>
                                 </Col>
                                 <Col span={8}>
-                                    <Checkbox value="D" style={{ lineHeight: '32px' }}>
+                                    <Checkbox value="D" style={{lineHeight: '32px'}}>
                                         D
-                            </Checkbox>
+                                    </Checkbox>
                                 </Col>
                                 <Col span={8}>
-                                    <Checkbox value="E" style={{ lineHeight: '32px' }}>
+                                    <Checkbox value="E" style={{lineHeight: '32px'}}>
                                         E
-                            </Checkbox>
+                                    </Checkbox>
                                 </Col>
                                 <Col span={8}>
-                                    <Checkbox value="F" style={{ lineHeight: '32px' }}>
+                                    <Checkbox value="F" style={{lineHeight: '32px'}}>
                                         F
-                            </Checkbox>
+                                    </Checkbox>
                                 </Col>
                             </Row>
                         </Checkbox.Group>
                     </Form.Item>
 
                     <Form.Item name="rate" label="Rate">
-                        <Rate />
+                        <Rate/>
                     </Form.Item>
 
                     <Form.Item
@@ -161,7 +159,7 @@ class AntdForm extends Component {
                     >
                         <Upload name="logo" action="/upload.do" listType="picture">
                             <Button>
-                                <UploadOutlined /> Click to upload
+                                <UploadOutlined/> Click to upload
                             </Button>
                         </Upload>
                     </Form.Item>
@@ -170,7 +168,7 @@ class AntdForm extends Component {
                         <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
                             <Upload.Dragger name="files" action="/upload.do">
                                 <p className="ant-upload-drag-icon">
-                                    <InboxOutlined />
+                                    <InboxOutlined/>
                                 </p>
                                 <p className="ant-upload-text">Click or drag file to this area to upload</p>
                                 <p className="ant-upload-hint">Support for a single or bulk upload.</p>
@@ -178,7 +176,7 @@ class AntdForm extends Component {
                         </Form.Item>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+                    <Form.Item wrapperCol={{span: 12, offset: 6}}>
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>

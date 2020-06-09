@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Drawer, Button, Radio, Space } from 'antd'; 
+import React, {Component} from 'react';
+import {Button, Drawer, Radio, Space} from 'antd';
 
 class AntdDrawer extends Component {
     constructor(props) {
@@ -30,10 +30,10 @@ class AntdDrawer extends Component {
     };
 
     render() {
-        const { placement, visible } = this.state; 
+        const {placement, visible} = this.state;
 
         return (
-            <div> 
+            <div>
                 <Space>
                     <Radio.Group defaultValue={placement} onChange={this.onChange}>
                         <Radio value="top">top</Radio>
@@ -43,7 +43,7 @@ class AntdDrawer extends Component {
                     </Radio.Group>
                     <Button type="primary" onClick={this.showDrawer}>
                         Open
-          </Button>
+                    </Button>
                 </Space>
                 <Drawer
                     title="Basic Drawer"

@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import moment from 'moment';
 import Config from '../../config/Config';
-import axios from 'axios'; 
-import zhCN from 'antd/es/locale/zh_CN'; 
+import axios from 'axios';
+import zhCN from 'antd/es/locale/zh_CN';
 import 'moment/locale/zh-cn';
-import { Table, Space, Button, Input, Select, Row, Col ,ConfigProvider} from 'antd'; 
-const { Option } = Select;
+import {Button, Col, ConfigProvider, Input, Row, Select, Space, Table} from 'antd';
+
+const {Option} = Select;
 
 class DictCode extends Component {
     constructor(props) {
@@ -90,7 +91,7 @@ class DictCode extends Component {
 
     // 查看选中的数据
     querySelected = () => {
-        this.setState({ loading: true });
+        this.setState({loading: true});
         setTimeout(() => {
             this.setState({
                 selectedRowKeys: [],
@@ -130,7 +131,7 @@ class DictCode extends Component {
 
     // 查询
     queryPage = (e) => {
-        this.findDictCodePage(this.state.pageNun, this.state.pageSize);
+        this.findDictCodePage(this.state.pageNum, this.state.pageSize);
     };
 
     // 订单状态下拉框修改
@@ -151,7 +152,7 @@ class DictCode extends Component {
     }
 
     render() {
-        const { loading, selectedRowKeys } = this.state;
+        const {loading, selectedRowKeys} = this.state;
         const rowSelection = {
             selectedRowKeys,
             onChange: this.onSelectChange,
@@ -243,9 +244,9 @@ class DictCode extends Component {
                 key: 'action',
                 render: (text, record) => (
                     <Space size="middle">
-                        <a onClick={this.queryDetail(record.id)}>查看</a> |
-                        <a >修改</a> |
-                        <a >删除</a>
+                        <Button type="link" onClick={this.queryDetail(record.id)}>查看</Button> |
+                        <Button type="link">修改</Button> |
+                        <Button type="link">删除</Button> |
                     </Space>
                 ),
                 fixed: 'right',
@@ -256,7 +257,7 @@ class DictCode extends Component {
         // 字典表数据
         const dataSource = [];
         this.state.dictCodeList.map((value, index) => {
-            dataSource.push({
+            return dataSource.push({
                 key: value.id,
                 id: value.id,
                 dictGroup: value.dictGroup,
@@ -269,7 +270,7 @@ class DictCode extends Component {
                 modifier: value.modifier,
                 gmtModified: value.gmtModified ? moment(value.gmtModified).format('YYYY-MM-DD HH:mm:ss') : "",
             })
-        })
+        });
 
         // 翻页控制
         const pagination = {
@@ -286,75 +287,72 @@ class DictCode extends Component {
         );
 
         return (
-            <div style={{ 'padding': '10px' }}>
+            <div style={{'padding': '10px'}}>
                 <ConfigProvider locale={zhCN}>
-                <Row >
-                    <Col span={6}> 
-                            字典表分组代码: <Input style={{ 'width': '100px' }} placeholder={this.state.dictGroup} onChange={this.dictGroupInputChange} />
-                    </Col>
+                    <Row>
+                        <Col span={6}>
+                            字典表分组代码: <Input style={{'width': '100px'}} placeholder={this.state.dictGroup} onChange={this.dictGroupInputChange}/>
+                        </Col>
 
-                    <Col span={4}>
-                        <div>
-                            名称: <Input style={{ 'width': '100px' }} placeholder={this.state.nameLike} onChange={this.nameInputChange} />
-                        </div>
-                    </Col>
+                        <Col span={4}>
+                            <div>
+                                名称: <Input style={{'width': '100px'}} placeholder={this.state.nameLike} onChange={this.nameInputChange}/>
+                            </div>
+                        </Col>
 
-                    <Col span={8}>
-                        <div>
-                            描述: <Input style={{ 'width': '300px' }} placeholder={this.state.descriptionLike} onChange={this.descriptionInputChange} />
-                        </div>
-                    </Col>
+                        <Col span={8}>
+                            <div>
+                                描述: <Input style={{'width': '300px'}} placeholder={this.state.descriptionLike} onChange={this.descriptionInputChange}/>
+                            </div>
+                        </Col>
 
-                    <Col span={6} className='containerRow'>
-                    订单状态:<Select
-                                    // defaultValue={this.state.orderStatus}
-                                    style={{ 'width': '200px' }}
-                                    onChange={this.orderStatusOnchange}
-                                    showSearch
-                                    placeholder="请选择(可多选)"
-                                    optionFilterProp="children"
-                                    onFocus={this.onFocus}
-                                    onBlur={this.onBlur}
-                                    onSearch={this.onSearch}
-                                    filterOption={(input, option) =>
-                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                    }
-                                    mode="multiple"
-                                >
-                                    {orderStatusSelect}
-                                </Select>
-                    </Col>
-                </Row>
- 
- 
+                        <Col span={6} className='containerRow'>
+                            订单状态:<Select
+                            // defaultValue={this.state.orderStatus}
+                            style={{'width': '200px'}}
+                            onChange={this.orderStatusOnchange}
+                            showSearch
+                            placeholder="请选择(可多选)"
+                            optionFilterProp="children"
+                            onFocus={this.onFocus}
+                            onBlur={this.onBlur}
+                            onSearch={this.onSearch}
+                            filterOption={(input, option) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                            mode="multiple"
+                        >
+                            {orderStatusSelect}
+                        </Select>
+                        </Col>
+                    </Row>
 
-                <br />
-                <Button type="primary" onClick={this.queryPage}>查询</Button>
 
-                <div style={{ marginBottom: 16 }}>
-                    <Button type="primary" onClick={this.querySelected} disabled={!hasSelected} loading={loading}>
-                        清空选中
-                    </Button>
-                    <span style={{ marginLeft: 8 }}>
+                    <br/>
+                    <Button type="primary" onClick={this.queryPage}>查询</Button>
+
+                    <div style={{marginBottom: 16}}>
+                        <Button type="primary" onClick={this.querySelected} disabled={!hasSelected} loading={loading}>
+                            清空选中
+                        </Button>
+                        <span style={{marginLeft: 8}}>
                         {hasSelected ? `已选择 ${selectedRowKeys.length} 条` : ''}
                     </span>
-                </div>
+                    </div>
 
-                <Table
-                    columns={columns}
-                    dataSource={dataSource}
-                    pagination={pagination}
-                    onChange={this.pageChange}
-                    bordered
-                    rowSelection={rowSelection}
-                    scroll={{ x: 1300 }}
-                    size="small"
-                    yScroll='enable'
-                />
+                    <Table
+                        columns={columns}
+                        dataSource={dataSource}
+                        pagination={pagination}
+                        onChange={this.pageChange}
+                        bordered
+                        rowSelection={rowSelection}
+                        scroll={{x: 1300}}
+                        size="small"
+                        yScroll='enable'
+                    />
 
 
-
-                    
                 </ConfigProvider>
             </div>
         );

@@ -1,18 +1,5 @@
-import React, { Component } from 'react';
-import {
-    ConfigProvider,
-    Pagination,
-    DatePicker,
-    TimePicker,
-    Calendar,
-    Popconfirm,
-    Table,
-    Modal,
-    Button,
-    Select,
-    Transfer,
-    Radio,
-} from 'antd';
+import React, {Component} from 'react';
+import {Button, Calendar, ConfigProvider, DatePicker, Modal, Pagination, Popconfirm, Radio, Select, Table, TimePicker, Transfer,} from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 import moment from 'moment';
@@ -20,8 +7,8 @@ import 'moment/locale/zh-cn';
 
 moment.locale('en');
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
+const {Option} = Select;
+const {RangePicker} = DatePicker;
 
 const columns = [
     {
@@ -94,11 +81,11 @@ class Page extends React.Component {
     };
 
     showModal = () => {
-        this.setState({ visible: true });
+        this.setState({visible: true});
     };
 
     hideModal = () => {
-        this.setState({ visible: false });
+        this.setState({visible: false});
     };
 
     render() {
@@ -117,25 +104,25 @@ class Page extends React.Component {
         return (
             <div className="locale-components">
                 <div className="example">
-                    <Table dataSource={dataSource} columns={columns} />
+                    <Table dataSource={dataSource} columns={columns}/>
                 </div>
-                <br />
+                <br/>
 
                 <div className="example">
-                    <Pagination defaultCurrent={1} total={50} showSizeChanger />
+                    <Pagination defaultCurrent={1} total={50} showSizeChanger/>
                 </div>
-                <br />
+                <br/>
 
                 <div className="example">
-                    <Select showSearch style={{ width: 200 }}>
+                    <Select showSearch style={{width: 200}}>
                         <Option value="jack">jack</Option>
                         <Option value="lucy">lucy</Option>
                     </Select>
-                    <DatePicker />
-                    <TimePicker />
-                    <RangePicker style={{ width: 200 }} />
+                    <DatePicker/>
+                    <TimePicker/>
+                    <RangePicker style={{width: 200}}/>
                 </div>
-                <br />
+                <br/>
 
                 <div className="example">
                     <Button type="primary" onClick={this.showModal}>
@@ -144,21 +131,20 @@ class Page extends React.Component {
                     <Button onClick={info}>Show info</Button>
                     <Button onClick={confirm}>Show confirm</Button>
                     <Popconfirm title="Question?">
-                        <a href="#">Click to confirm</a>
+                        <Button type="link">Click to confirm</Button>
                     </Popconfirm>
                 </div>
-                <br />
+                <br/>
 
                 <div className="example">
-                    <Transfer dataSource={[]} showSearch targetKeys={[]} render={item => item.title} />
+                    <Transfer dataSource={[]} showSearch targetKeys={[]} render={item => item.title}/>
                 </div>
-                <br />
+                <br/>
 
                 <div className="site-config-provider-calendar-wrapper">
-                    <Calendar fullscreen={false} value={moment()} />
+                    <Calendar fullscreen={false} value={moment()}/>
                 </div>
-                <br />
-
+                <br/>
 
 
                 <Modal title="Locale Modal" visible={this.state.visible} onCancel={this.hideModal}>
@@ -179,7 +165,7 @@ class AntdConfigProvider extends Component {
 
     changeLocale = (e) => {
         const localeValue = e.target.value;
-        this.setState({ locale: localeValue });
+        this.setState({locale: localeValue});
         if (!localeValue) {
             moment.locale('en');
         } else {
@@ -188,18 +174,18 @@ class AntdConfigProvider extends Component {
     };
 
     render() {
-        const { locale } = this.state;
+        const {locale} = this.state;
         return (
-            <div style={{ padding: '10px' }}>
+            <div style={{padding: '10px'}}>
                 <div className="change-locale">
-                    <span style={{ marginRight: 16 }}>Change locale of components: </span>
+                    <span style={{marginRight: 16}}>Change locale of components: </span>
                     <Radio.Group value={locale} onChange={this.changeLocale}>
                         <Radio.Button key="en" value={enUS}>
                             English
-                    </Radio.Button>
+                        </Radio.Button>
                         <Radio.Button key="cn" value={zhCN}>
                             中文
-                    </Radio.Button>
+                        </Radio.Button>
                     </Radio.Group>
                 </div>
 

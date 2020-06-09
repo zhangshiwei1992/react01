@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Popconfirm, message } from 'antd';
+import React, {Component} from 'react';
+import {Button, message, Popconfirm} from 'antd';
 
 class AntdPopconfirm extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class AntdPopconfirm extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{padding: '10px'}}>
                 <Popconfirm
                     title="Are you sure delete this task?"
                     onConfirm={this.confirm}
@@ -27,7 +27,7 @@ class AntdPopconfirm extends Component {
                     okText="确定"
                     cancelText="取消"
                 >
-                    <a href="#">Delete</a>
+                    <Button type="link">删除</Button>
                 </Popconfirm>
             </div>
         );
