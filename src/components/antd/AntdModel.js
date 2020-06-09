@@ -90,6 +90,10 @@ class AntdModel extends Component {
                     onOk={this.handleOk2}
                     confirmLoading={confirmLoading}
                     onCancel={this.handleCancel2}
+                    okText="确认"
+                    cancelText="取消"
+                    // style={{ top: 20 }}
+                    // centered
                 >
                 <p>{ModalText}</p>
                 </Modal>

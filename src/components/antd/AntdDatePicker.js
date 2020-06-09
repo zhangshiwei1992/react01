@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { DatePicker } from 'antd';
+import { DatePicker,ConfigProvider } from 'antd';
 import moment from 'moment';
+import zhCN from 'antd/es/locale/zh_CN';
+
 const { RangePicker } = DatePicker;
 
 class AntdDatePicker extends Component {
@@ -22,6 +24,7 @@ class AntdDatePicker extends Component {
 
         return (
             <div style={{ 'padding': "1px 1px 1px 100px" }}>
+                <ConfigProvider locale={zhCN}>
                 <DatePicker onChange={this.onChange} /> 
                 <DatePicker onChange={this.onChange} picker="week"  style={{ 'margin': "20px" }}/> 
                 <DatePicker onChange={this.onChange} picker="month"   style={{ 'margin': "10px" }}/> 
@@ -38,6 +41,7 @@ class AntdDatePicker extends Component {
                     defaultValue={[moment(moment(), dateFormat), moment(moment(), dateForma2)]}
                     format={dateForma2}
                 />
+                </ConfigProvider>
             </div>
         );
     }

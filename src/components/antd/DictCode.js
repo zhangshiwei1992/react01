@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Config from '../../config/Config';
-import axios from 'axios';
-import { Table, Space, Button, Input, Select, Row, Col } from 'antd'; 
+import axios from 'axios'; 
+import zhCN from 'antd/es/locale/zh_CN'; 
+import 'moment/locale/zh-cn';
+import { Table, Space, Button, Input, Select, Row, Col ,ConfigProvider} from 'antd'; 
 const { Option } = Select;
 
 class DictCode extends Component {
@@ -270,7 +272,7 @@ class DictCode extends Component {
         })
 
         // 翻页控制
-        const pages = {
+        const pagination = {
             size: 'middle',
             total: this.state.totalCount,
             showSizeChanger: true,
@@ -285,6 +287,7 @@ class DictCode extends Component {
 
         return (
             <div style={{ 'padding': '10px' }}>
+                <ConfigProvider locale={zhCN}>
                 <Row >
                     <Col span={6}> 
                             字典表分组代码: <Input style={{ 'width': '100px' }} placeholder={this.state.dictGroup} onChange={this.dictGroupInputChange} />
@@ -340,7 +343,7 @@ class DictCode extends Component {
                 <Table
                     columns={columns}
                     dataSource={dataSource}
-                    pagination={pages}
+                    pagination={pagination}
                     onChange={this.pageChange}
                     bordered
                     rowSelection={rowSelection}
@@ -350,6 +353,9 @@ class DictCode extends Component {
                 />
 
 
+
+                    
+                </ConfigProvider>
             </div>
         );
     }

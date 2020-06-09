@@ -39,6 +39,15 @@ import AntdTabsTwo from '../components/antd/AntdTabsTwo';
 import AntdAlert from '../components/antd/AntdAlert';
 import AntdDrawer from '../components/antd/AntdDrawer';
 import AntdModel from '../components/antd/AntdModel';
+import AntdMessage from '../components/antd/AntdMessage';
+import AntdOpenNotification from '../components/antd/AntdOpenNotification';
+import AntdProgress from '../components/antd/AntdProgress';
+import AntdPopconfirm from '../components/antd/AntdPopconfirm';
+import AntdResult from '../components/antd/AntdResult';
+import AntdApin from '../components/antd/AntdApin';
+import AntdSkeleton from '../components/antd/AntdSkeleton';
+import AntdBackTop from '../components/antd/AntdBackTop';
+import AntdConfigProvider from '../components/antd/AntdConfigProvider';
 
 let routerList = [ 
   {
@@ -213,6 +222,42 @@ let routerList = [
   {
     path: '/AntdModel',
     component: AntdModel
+  },
+  {
+    path: '/AntdMessage',
+    component: AntdMessage
+  },
+  {
+    path: '/AntdOpenNotification',
+    component: AntdOpenNotification
+  },
+  {
+    path: '/AntdProgress',
+    component: AntdProgress
+  },
+  {
+    path: '/AntdPopconfirm',
+    component: AntdPopconfirm
+  },
+  {
+    path: '/AntdResult',
+    component: AntdResult
+  },
+  {
+    path: '/AntdApin',
+    component: AntdApin
+  },
+  {
+    path: '/AntdSkeleton',
+    component: AntdSkeleton
+  },
+  {
+    path: '/AntdBackTop',
+    component: AntdBackTop
+  },
+  {
+    path: '/AntdConfigProvider',
+    component: AntdConfigProvider
   },
 ];
 
