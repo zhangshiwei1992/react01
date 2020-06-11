@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
 
 class AntdModel extends Component {
     constructor(props) {
@@ -58,6 +60,17 @@ class AntdModel extends Component {
         }, 2000);
     };
 
+
+    confirm = () => {
+        Modal.confirm({
+            title: 'Confirm',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Bla bla ...',
+            okText: '确认',
+            cancelText: '取消',
+        });
+    }
+
     render() {
         const { visible2, confirmLoading, ModalText } = this.state;
 
@@ -92,11 +105,18 @@ class AntdModel extends Component {
                     onCancel={this.handleCancel2}
                     okText="确认"
                     cancelText="取消"
-                    // style={{ top: 20 }}
-                    // centered
+                // style={{ top: 20 }}
+                // centered
                 >
-                <p>{ModalText}</p>
+                    <p>{ModalText}</p>
                 </Modal>
+
+                <br />
+                <br />
+
+
+                <Button onClick={this.confirm}>确认添加</Button>
+
             </div>
         );
     }

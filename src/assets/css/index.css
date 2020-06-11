@@ -265,9 +265,7 @@ code {
   padding:10px;
 } */
  
-form { 
-  border-right:1px solid red;
-  border-top:1px solid red;  
+form {  
   table-layout:fixed;
 }
 form tr td {

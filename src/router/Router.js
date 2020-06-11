@@ -48,6 +48,7 @@ import AntdApin from '../components/antd/AntdApin';
 import AntdSkeleton from '../components/antd/AntdSkeleton';
 import AntdBackTop from '../components/antd/AntdBackTop';
 import AntdConfigProvider from '../components/antd/AntdConfigProvider';
+import AntdFormCheck from '../components/antd/AntdFormCheck';
 
 let routerList = [
     {
@@ -263,6 +264,10 @@ let routerList = [
     {
         path: '/AntdConfigProvider',
         component: AntdConfigProvider
+    },
+    {
+        path: '/AntdFormCheck',
+        component: AntdFormCheck
     },
 ];
 

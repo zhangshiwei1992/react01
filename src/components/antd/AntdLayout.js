@@ -185,7 +185,7 @@ class AntdLayout extends Component {
                         {
                             "id": 40,
                             "url": "/AntdSkeleton",
-                            "name": "AntdSkeleton骨架占位符",
+                            "name": "Skeleton骨架占位符",
                             "icon": "TransactionOutlined",
                             "children": null
                         },
@@ -200,6 +200,13 @@ class AntdLayout extends Component {
                             "id": 43,
                             "url": "/AntdConfigProvider",
                             "name": "全局变量中文",
+                            "icon": "TransactionOutlined",
+                            "children": null
+                        },
+                        {
+                            "id": 44,
+                            "url": "/AntdFormCheck",
+                            "name": "form表单校验输入框",
                             "icon": "TransactionOutlined",
                             "children": null
                         },
