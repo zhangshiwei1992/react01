@@ -250,9 +250,9 @@ class VehicleBrandAxios extends Component {
     }
 
     // 删除附件详情信息
-    onRemoveFunction = (file) => { 
-        console.log('删除附件详情信息-onRemoveFunction-file : ', file); 
-        console.log('删除附件详情信息-vehicleBrandDetail : ', this.state.vehicleBrandDetail);  
+    onRemoveFunction = (file) => {
+        console.log('删除附件详情信息-onRemoveFunction-file : ', file);
+        console.log('删除附件详情信息-vehicleBrandDetail : ', this.state.vehicleBrandDetail);
     }
 
     // 文件上传
@@ -268,13 +268,13 @@ class VehicleBrandAxios extends Component {
             headers: {
                 authorization: 'authorization-text',
             },
-            onChange(info) {  
+            onChange(info) {
                 _this.setState({
                     fileList: info.fileList
                 });
 
                 //上传文件改变时的状态  
-                if (info.file.status === 'done') { 
+                if (info.file.status === 'done') {
                     console.log('info.file.response.value======: ', info.file.response.value);
                     message.success(`${info.file.name} 上传成功！`);
                     _this.setState({
@@ -283,7 +283,7 @@ class VehicleBrandAxios extends Component {
                             logo: info.file.response.value
                         }
                     });
-                } else if (info.file.status === 'error') { 
+                } else if (info.file.status === 'error') {
                     message.error(`${info.file.name} 上传失败！`);
                 }
             },
@@ -521,7 +521,6 @@ class VehicleBrandAxios extends Component {
                                     name: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.name : '',
                                     fullName: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.fullName : '',
                                     initial: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.initial : '',
-                                    logo: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.logo : '',
                                 }}
                             >
                                 <Form.Item
@@ -548,25 +547,24 @@ class VehicleBrandAxios extends Component {
                                     {this.state.operationType && this.state.operationType === 'query' ? <Input disabled /> : <Input />}
                                 </Form.Item>
 
+
                                 <Form.Item
-                                    label="logo地址"
-                                    name="logo"
+                                    label="logo图片"
                                 >
-                                    <Input disabled />
+                                    <Upload
+                                        {...this.fileUpload()}
+                                        showUploadList={true}
+                                        listType="picture-card"
+                                        fileList={this.state.fileList}
+                                        onPreview={this.imagePreview}
+                                        beforeUpload={this.beforeUploadFunction}
+                                        onRemove={this.onRemoveFunction}
+                                        disabled={this.state.operationType === 'query' ? true : false}
+                                    >
+                                        {this.state.fileList.length >= 1 ? null : uploadButton}
+                                    </Upload>
                                 </Form.Item>
 
-                                <Upload
-                                    {...this.fileUpload()}
-                                    showUploadList={true}
-                                    listType="picture-card"
-                                    fileList={this.state.fileList}
-                                    onPreview={this.imagePreview}
-                                    beforeUpload={this.beforeUploadFunction}
-                                    onRemove={this.onRemoveFunction}
-                                    disabled={this.state.operationType === 'query' ? true : false}
-                                >
-                                    {this.state.fileList.length >= 1 ? null : uploadButton}
-                                </Upload>
 
                                 {this.state.operationType !== 'query' ?
                                     (<Form.Item {...tailLayout}>
