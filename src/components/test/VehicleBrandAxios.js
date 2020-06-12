@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Input, Row, Select, Space, Table, Modal, message, Form, Upload } from "antd";
+import { Button, Col, Input, Row, Select, Space, Table, Modal, message, Form, Upload, notification, Popconfirm } from "antd";
 import moment from 'moment';
 import Config from '../../config/Config';
 import axios from 'axios';
@@ -39,20 +39,15 @@ class VehicleBrandAxios extends Component {
             totalCount: 0,
             vehicleBrandList: [],
             statusDictCodeList: [],
-            vehicleBrandDetailVisible: false,
+
             vehicleBrandDetail: {
                 name: '',
                 fullName: '',
                 initial: '',
                 logo: '',
             },
-            vehicleBrandSAddVisible: false,
-            vehicleBrandAdd: {
-                name: null,
-                fullName: null,
-                initial: null,
-                logo: null,
-            },
+            vehicleBrandVisible: false,
+            operationType: null,
 
             previewVisible: false,
             previewImage: '',
@@ -155,49 +150,52 @@ class VehicleBrandAxios extends Component {
         this.findVehicleBrandPage(e.current, e.pageSize);
     };
 
-    // 展示详情对话框
-    showDetailModel = (e, record) => {
-        this.setState({
-            vehicleBrandDetailVisible: true,
-            vehicleBrandDetail: record,
-        });
-    };
-
-    // 不展示详情对话框
-    notShowDetailModel = () => {
-        this.setState({
-            vehicleBrandDetailVisible: false,
-        });
-    };
-
     // 展示新增对话框
-    showAddModel = () => {
+    showBrandModel = (e, record, type) => {
+        console.log('showBrandModel ====== record: ', record);
+        console.log('showBrandModel ====== type: ', type);
         this.setState({
-            vehicleBrandAddVisible: true,
+            vehicleBrandVisible: true,
+            vehicleBrandDetail: record ? record : {
+                name: '',
+                fullName: '',
+                initial: '',
+                logo: '',
+            },
+            fileList: record ? [
+                {
+                    uid: record.id ? record.id : 1,
+                    name: record ? 'image.png' : '',
+                    status: '1',
+                    url: record.logo ? record.logo : ''
+                },
+            ] : [],
+            operationType: type
         })
     };
 
     // 新增对话框 - 取消
     notShowAddModel = (e) => {
         this.setState({
-            vehicleBrandAddVisible: false,
+            vehicleBrandVisible: false,
         });
     };
 
     // 新增 - 提交
     addSubmit = (formValues) => {
         console.log('formValues: ', formValues);
-        if (!this.state.vehicleBrandAddLogo) {
+        if (!this.state.vehicleBrandDetail || !this.state.vehicleBrandDetail.logo) {
             return message.warning('请上传logo图片!');
         }
 
         var brandAdd = {
+            id: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.id : null,
             name: formValues.name,
             fullName: formValues.fullName,
             initial: formValues.initial,
             logo: this.state.vehicleBrandDetail.logo
         }
-        var url = Config.host + '/vehicleBrand/create';
+        var url = Config.host + '/vehicleBrand/saveOrUpdate';
         axios.post(url, brandAdd)
             .then((response) => {
                 console.log('新增 - 提交 - data: ', response.data);
@@ -211,7 +209,7 @@ class VehicleBrandAxios extends Component {
                     });
                 } else {
                     this.setState({
-                        vehicleBrandAddVisible: false,
+                        vehicleBrandVisible: false,
                     });
                     message.success('新增成功!');
                     this.findBrandPage();
@@ -224,6 +222,7 @@ class VehicleBrandAxios extends Component {
 
     // 图片预览
     imagePreview = async file => {
+        console.log('------图片预览-------file: ', file);
         if (!file.url && !file.preview) {
             file.preview = await getBase64(file.originFileObj);
         }
@@ -250,14 +249,15 @@ class VehicleBrandAxios extends Component {
         console.log('上传之前-校验-fileList: ', fileList);
     }
 
-    // 删除
-    onRemoveFunction = (file) => {
-        console.log('onRemoveFunction');
-        console.log('onRemoveFunction-file : ', file);
+    // 删除附件详情信息
+    onRemoveFunction = (file) => { 
+        console.log('删除附件详情信息-onRemoveFunction-file : ', file); 
+        console.log('删除附件详情信息-vehicleBrandDetail : ', this.state.vehicleBrandDetail);  
     }
 
     // 文件上传
     fileUpload = () => {
+        var id = this.state.vehicleBrandDetail && this.state.vehicleBrandDetail.id ? this.state.vehicleBrandDetail.id : null;
         var _this = this;
         const fileUplod = {
             name: 'file',
@@ -268,26 +268,22 @@ class VehicleBrandAxios extends Component {
             headers: {
                 authorization: 'authorization-text',
             },
-            onChange(info) {
-                console.log('上传结果info : ', info);
-                console.log('上传结果info.file.status : ', info.file.status);
-
+            onChange(info) {  
                 _this.setState({
                     fileList: info.fileList
                 });
 
                 //上传文件改变时的状态  
-                if (info.file.status === 'done') {
-                    console.log('============done================');
+                if (info.file.status === 'done') { 
+                    console.log('info.file.response.value======: ', info.file.response.value);
                     message.success(`${info.file.name} 上传成功！`);
                     _this.setState({
                         vehicleBrandDetail: {
+                            id: id,
                             logo: info.file.response.value
                         }
                     });
-
-                } else if (info.file.status === 'error') {
-                    console.log('============error================');
+                } else if (info.file.status === 'error') { 
                     message.error(`${info.file.name} 上传失败！`);
                 }
             },
@@ -295,10 +291,33 @@ class VehicleBrandAxios extends Component {
         return fileUplod;
     }
 
+    // 删除品牌信息
+    deleteVehicleBrandById = (e, record) => {
+        console.log('删除品牌信息-deleteByPrimaryKey-record: ', record);
+        var url = Config.host + '/vehicleBrand/deleteVehicleBrandById';
+        axios.post(url, { id: record.id })
+            .then((response) => {
+                if (!response.data.success) {
+                    message.success('删除失败! ' + response.data.errorMsg);
+                } else {
+                    notification['success']({
+                        message: '删除成功!',
+                        // description: '删除成功!',
+                        duration: 3,
+                    });
+
+                    this.findBrandPage();
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 
     render() {
         console.log('------------------render---------------------------');
-        console.log('----------vehicleBrandAddLogo: ', this.state.vehicleBrandAddLogo);
+        console.log('-------vehicleBrandDetail----------- ', this.state.vehicleBrandDetail);
+
         // 标题行
         const columns = [
             {
@@ -374,9 +393,11 @@ class VehicleBrandAxios extends Component {
                 key: 'action',
                 render: (text, record) => (
                     <Space size="middle">
-                        <Button type="link" onClick={e => this.showDetailModel(e, record)}>查看</Button>|
-                        <Button type="link" onClick={e => this.showDetailModel(e, record)}>修改</Button>|
-                        <Button type="link">删除</Button>
+                        <Button type="link" onClick={e => this.showBrandModel(e, record, 'query')}>查看</Button>|
+                        <Button type="link" onClick={e => this.showBrandModel(e, record, 'update')}>修改</Button>|
+                        <Popconfirm title="是否确认删除？" okText="确认" cancelText="取消" onConfirm={e => this.deleteVehicleBrandById(e, record)}>
+                            <Button type="link" >删除</Button>
+                        </Popconfirm>
                     </Space>
                 ),
                 fixed: 'right',
@@ -432,9 +453,6 @@ class VehicleBrandAxios extends Component {
             </div>
         );
 
-
-
-
         return (
             <div style={{ 'padding': '10px' }}>
                 <Row>
@@ -468,7 +486,7 @@ class VehicleBrandAxios extends Component {
                 <div style={{ 'textAlign': 'right' }}>
                     <Button type="primary" onClick={this.findBrandPage} onKeyUp={this.onKeyUpFunction}>查询</Button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button type="primary" onClick={this.showAddModel}>新增</Button>
+                    <Button type="primary" onClick={e => this.showBrandModel(e, null, 'add')}>新增</Button>
                 </div>
 
                 <br />
@@ -485,120 +503,94 @@ class VehicleBrandAxios extends Component {
                     yScroll='enable'
                 />
 
-                <Modal
-                    title="品牌详情"
-                    visible={this.state.vehicleBrandDetailVisible}
-                    footer={null}
-                    width='800px'
-                    onCancel={this.notShowDetailModel}
-                >
-                    <Form
-                        {...layout}
-                        onFinish={this.addSubmit}
+                {this.state.vehicleBrandVisible &&
+                    <Modal
+                        title={this.state.operationType && this.state.operationType === 'add' ? "品牌新增" : this.state.operationType && this.state.operationType === 'update' ? "品牌修改" : "品牌查看"}
+                        visible={this.state.vehicleBrandVisible}
+                        onOk={this.addSubmit}
+                        onCancel={this.notShowAddModel}
+                        width='800px'
+                        footer={null}
+                        style={{ 'Z-index': 1 }}
                     >
-                        <Form.Item
-                            label="名称"
-                        >
-                            <Input value={this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.name : ''} />
-                        </Form.Item>
+                        {
+                            <Form
+                                {...layout}
+                                onFinish={this.addSubmit}
+                                initialValues={{
+                                    name: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.name : '',
+                                    fullName: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.fullName : '',
+                                    initial: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.initial : '',
+                                    logo: this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.logo : '',
+                                }}
+                            >
+                                <Form.Item
+                                    label="名称"
+                                    name="name"
+                                    rules={[{ required: true, message: '请填写名称!' }]}
+                                >
+                                    {this.state.operationType && this.state.operationType === 'query' ? <Input disabled /> : <Input />}
+                                </Form.Item>
 
-                        <Form.Item
-                            label="全名称"
-                        >
-                            <Input value={this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.fullName : ''} />
-                        </Form.Item>
+                                <Form.Item
+                                    label="全名称"
+                                    name="fullName"
+                                    rules={[{ required: true, message: '请填写全名称!' }]}
+                                >
+                                    {this.state.operationType && this.state.operationType === 'query' ? <Input disabled /> : <Input />}
+                                </Form.Item>
 
-                        <Form.Item
-                            label="首字母"
-                        >
-                            <Input value={this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.initial : ''} />
-                        </Form.Item>
+                                <Form.Item
+                                    label="首字母"
+                                    name="initial"
+                                    rules={[{ required: true, message: '请填写首字母!' }]}
+                                >
+                                    {this.state.operationType && this.state.operationType === 'query' ? <Input disabled /> : <Input />}
+                                </Form.Item>
 
+                                <Form.Item
+                                    label="logo地址"
+                                    name="logo"
+                                >
+                                    <Input disabled />
+                                </Form.Item>
 
-                        <Form.Item
-                            label="logo地址"
-                            disabled
-                        >
-                            <Input value={this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.logo : ''} />
-                        </Form.Item>
+                                <Upload
+                                    {...this.fileUpload()}
+                                    showUploadList={true}
+                                    listType="picture-card"
+                                    fileList={this.state.fileList}
+                                    onPreview={this.imagePreview}
+                                    beforeUpload={this.beforeUploadFunction}
+                                    onRemove={this.onRemoveFunction}
+                                    disabled={this.state.operationType === 'query' ? true : false}
+                                >
+                                    {this.state.fileList.length >= 1 ? null : uploadButton}
+                                </Upload>
 
-                        <Form.Item
-                            label="logo图片"
-                        >
-                            {
-                                this.state.vehicleBrandDetail.logo ? <img src={this.state.vehicleBrandDetail.logo} style={{ width: '50px', height: '50px' }} alt="" /> : ''
-                            }
-                        </Form.Item>
-                    </Form>
-                </Modal>
+                                {this.state.operationType !== 'query' ?
+                                    (<Form.Item {...tailLayout}>
+                                        <Button type="primary" htmlType="submit">
+                                            提交
+                                        </Button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Button type="primary" onClick={this.notShowAddModel}>
+                                            取消
+                                        </Button>
+                                    </Form.Item>) : ''}
+                            </Form>
+                        }
+                    </Modal>
+                }
 
                 <Modal
-                    title="品牌新增"
-                    visible={this.state.vehicleBrandAddVisible}
-                    onCancel={this.notShowAddModel}
-                    width='800px'
+                    visible={this.state.previewVisible}
+                    title={this.state.previewTitle}
                     footer={null}
+                    onCancel={this.imagePreviewCancel}
+                    style={{ 'Z-index': 1000 }}
                 >
-                    {
-                        <Form
-                            {...layout}
-                            onFinish={this.addSubmit}
-                        >
-                            <Form.Item
-                                label="名称"
-                                name="name"
-                                rules={[{ required: true, message: '请填写名称!' }]}
-                            >
-                                <Input />
-                            </Form.Item>
-
-                            <Form.Item
-                                label="全名称"
-                                name="fullName"
-                                rules={[{ required: true, message: '请填写全名称!' }]}
-                            >
-                                <Input />
-                            </Form.Item>
-
-                            <Form.Item
-                                label="首字母"
-                                name="initial"
-                                rules={[{ required: true, message: '请填写首字母!' }]}
-                            >
-                                <Input />
-                            </Form.Item>
-
-                            <Form.Item
-                                label="logo地址"
-                                name="logo"
-                                disabled
-                            >
-                                <Input value={this.state.vehicleBrandDetail ? this.state.vehicleBrandDetail.logo : ''} />
-                            </Form.Item>
-
-                            <Upload
-                                {...this.fileUpload()}
-                                showUploadList={true}
-                                listType="picture-card"
-                                fileList={this.state.fileList}
-                                onPreview={this.imagePreview}
-                                beforeUpload={this.beforeUploadFunction}
-                                onRemove={this.onRemoveFunction}
-                            >
-                                {this.state.fileList.length >= 1 ? null : uploadButton}
-                            </Upload>
-
-                            <Form.Item {...tailLayout}>
-                                <Button type="primary" htmlType="submit">
-                                    提交
-                                </Button>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <Button type="primary" onClick={this.notShowAddModel}>
-                                    取消
-                                </Button>
-                            </Form.Item>
-                        </Form>
-                    }
+                    <img alt="example" style={{ width: '100%' }} src={this.state.previewImageUrl} />
                 </Modal>
             </div>
         );
