@@ -60,6 +60,8 @@ class VehicleBrandAxios extends Component {
                 //     url: 'http://img5.mtime.cn/mt/2019/01/09/171109.88229500_270X405X4.jpg',
                 // },
             ],
+
+            queryLoading: false,
         };
     }
 
@@ -108,7 +110,8 @@ class VehicleBrandAxios extends Component {
                 console.log('response.data.value :', response.data.value);
                 this.setState({
                     vehicleBrandList: response.data.value,
-                    totalCount: response.data.totalCount
+                    totalCount: response.data.totalCount,
+                    queryLoading: false,
                 });
             })
             .catch(function (error) {
@@ -126,7 +129,13 @@ class VehicleBrandAxios extends Component {
 
     // 查询
     findBrandPage = () => {
-        this.findVehicleBrandPage(this.state.pageNum, this.state.pageSize);
+        this.setState({
+            queryLoading: true,
+        });
+       setTimeout(() => {
+           console.log('睡眠1秒-再去查询 - 按钮旋转加载中效果');
+           this.findVehicleBrandPage(this.state.pageNum, this.state.pageSize);
+       }, 1000); 
     };
 
     // 字典表 - 状态
@@ -484,7 +493,7 @@ class VehicleBrandAxios extends Component {
 
                 <br />
                 <div style={{ 'textAlign': 'right' }}>
-                    <Button type="primary" onClick={this.findBrandPage} onKeyUp={this.onKeyUpFunction}>查询</Button>
+                    <Button type="primary" onClick={this.findBrandPage} onKeyUp={this.onKeyUpFunction} loading={this.state.queryLoading}>查询</Button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <Button type="primary" onClick={e => this.showBrandModel(e, null, 'add')}>新增</Button>
                 </div>
@@ -581,15 +590,18 @@ class VehicleBrandAxios extends Component {
                     </Modal>
                 }
 
-                <Modal
-                    visible={this.state.previewVisible}
-                    title={this.state.previewTitle}
-                    footer={null}
-                    onCancel={this.imagePreviewCancel}
-                    style={{ 'Z-index': 1000 }}
-                >
-                    <img alt="example" style={{ width: '100%' }} src={this.state.previewImageUrl} />
-                </Modal>
+                {
+                    this.state.previewVisible &&
+                    <Modal
+                        visible={this.state.previewVisible}
+                        title={this.state.previewTitle}
+                        footer={null}
+                        onCancel={this.imagePreviewCancel}
+                        style={{ 'Z-index': 1000 }}
+                    >
+                        <img alt="example" style={{ width: '100%' }} src={this.state.previewImageUrl} />
+                    </Modal>
+                }
             </div>
         );
     }
